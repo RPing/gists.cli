@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
-import os, log, sys, defaults, platform
+import os, sys, platform
+
+from gists_cli import log, defaults
 
 #-------------------------------------------
 

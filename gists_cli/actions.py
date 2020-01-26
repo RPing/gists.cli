@@ -7,10 +7,12 @@ from subprocess import call
 
 from texttable import Texttable
 
-import api
-import log
-import util
-import defaults
+from gists_cli import (
+    log,
+    api,
+    util,
+    defaults,
+)
 
 #-------------------------------------------
 

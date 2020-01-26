@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
-import sys, os.path, json, getpass, requests, log, util
+import sys, os.path, json, getpass, requests
+
+from gists_cli import log, util
 
 
 #-------------------------------------------
@@ -10,7 +12,7 @@ GITHUB_API = "https://api.github.com"
 HOME_DIR = '~/Documents' if util.isIOS() == True else '~'
 HOME = os.path.expanduser(HOME_DIR)
 TOKENFILE = '/.gists'                # first line with TOKEN. Checked first.
-CREDENTIALS = '/.git-credentials'   # Uses first entry. Format: https://USER:TOKEN@github.com Checked second. 
+CREDENTIALS = '/.git-credentials'   # Uses first entry. Format: https://USER:TOKEN@github.com Checked second.
 
 #-------------------------------------------
 # Globals
@@ -36,7 +38,7 @@ def updateCredentials ():
     log.error ("Message: " + str(e))
 
 
-def getCredentials (): 
+def getCredentials ():
   global token, username, password
   if os.path.exists( HOME + TOKENFILE):
     file = open(HOME + TOKENFILE, 'r')
@@ -116,7 +118,7 @@ def call (meth, path, data={}, params={}, headers={}):
 
     if meth != 'delete':
       result = json.loads( request.text )
-  except Exception as e: 
+  except Exception as e:
     print('Oops. We had a slight problem with the GitHub SSO: ' + str( e ))
     sys.exit(0)
   return result
@@ -139,7 +141,7 @@ def auth (username, password):
     # check if the OTP header exists... it should
     if 'X-GitHub-OTP' in request.headers:
       log.debug('OTP: {0}'.format( request.headers['X-GitHub-OTP'] ))
-      # is OTP required? 
+      # is OTP required?
       if request.headers['X-GitHub-OTP'].lower().find('required;') > -1:
         # If sms, request an sms and then prompt for code
         if request.headers['X-GitHub-OTP'].lower().find('sms') > -1:
@@ -169,7 +171,7 @@ def auth (username, password):
 
 def _checkStatus (request):
   code = request.status_code
-  
+
   log.debug ('Github API Response Code: %s' % str(code))
   log.debug(request.headers)
 

@@ -3,9 +3,7 @@
 import sys
 from optparse import OptionGroup, OptionParser
 
-import log
-import util
-import actions
+from gists_cli import log, util, actions
 
 #-------------------------------------------
 

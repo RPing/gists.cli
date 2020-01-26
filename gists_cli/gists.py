@@ -2,10 +2,12 @@
 
 import sys
 
-import log
-import util
-import actions
-import defaults
+from gists_cli import (
+    log,
+    util,
+    actions,
+    defaults,
+)
 
 #-------------------------------------------
 
